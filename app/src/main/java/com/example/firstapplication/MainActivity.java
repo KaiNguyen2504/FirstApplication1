@@ -2,6 +2,7 @@ package com.example.firstapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,7 +14,8 @@ public class MainActivity extends AppCompatActivity {
     EditText editTextNum1;
     EditText editTextNum2;
     Button buttonOK;
-    String sKQ="";
+//    String sKQ="";
+    String sResult="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,11 +31,15 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     int n1 = Integer.parseInt(editTextNum1.getText().toString());
                     int n2 = Integer.parseInt(editTextNum2.getText().toString());
-                    sKQ= "" + (n1+n2);
+                    //sKQ= "" + (n1+n2);
+                    sResult= "" + (n1+n2);
                 }catch (Exception e){
-                    sKQ="Sai KQ";
+                    sResult="Sai KQ";
                 }
-                Toast.makeText(MainActivity.this,sKQ,Toast.LENGTH_LONG).show();
+                //Toast.makeText(MainActivity.this,sKQ,Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(MainActivity.this,SecondActivity.class);
+                intent.putExtra("result",sResult);
+                startActivity(intent);
             }
         });
     }

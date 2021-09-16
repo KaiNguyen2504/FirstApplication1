@@ -4,72 +4,49 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
 
-
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/pink"
+    android:background="@color/yellow"
     android:layout_margin="10dp"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".SecondActivity">
 
-    <!-- number 1-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/purple_500"
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginRight="100dp">
-
-        <TextView
-            android:text="Number 1:"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:gravity="center_vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"/>
-
-        <EditText
-            android:id="@+id/editTextNum1"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:hint="Nhập số thứ 1" />
-    </LinearLayout>
-
-    <!-- number 2-->
+    <!-- result -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/teal_200"
         android:orientation="horizontal"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="150dp"
         android:layout_marginLeft="100dp"
         android:layout_marginRight="100dp">
 
         <TextView
-            android:text="Number 2:"
+            android:text="Result :"
             android:textColor="@color/black"
             android:textStyle="bold"
             android:gravity="center_vertical"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"/>
-        <EditText
-            android:id="@+id/editTextNum2"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:id="@+id/textViewResult"
+            android:textColor="@color/black"
+            android:gravity="center_vertical"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:hint="Nhập số thứ 2" />
+            android:layout_height="match_parent"/>
+
     </LinearLayout>
 
     <!--Button OK-->
     <Button
-        android:id="@+id/butOK"
+        android:id="@+id/butBack"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginLeft="120dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="50dp"
         android:layout_marginRight="120dp"
-        android:text="OK"
+        android:text="Back"
         android:textColor="@color/white"
         android:textSize="20dp"
         android:textStyle="bold"
