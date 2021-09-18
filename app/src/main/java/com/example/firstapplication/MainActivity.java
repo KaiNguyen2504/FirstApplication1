@@ -1,5 +1,7 @@
 package com.example.firstapplication;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -11,11 +13,12 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+    final int REQUEST_CODE = 100;
     EditText editTextNum1;
     EditText editTextNum2;
     Button buttonOK;
-//    String sKQ="";
     String sResult="";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,22 +28,32 @@ public class MainActivity extends AppCompatActivity {
         editTextNum2 = findViewById(R.id.editTextNum2);
         buttonOK = findViewById(R.id.butOK);
 
-        buttonOK.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    int n1 = Integer.parseInt(editTextNum1.getText().toString());
-                    int n2 = Integer.parseInt(editTextNum2.getText().toString());
-                    //sKQ= "" + (n1+n2);
-                    sResult= "" + (n1+n2);
-                }catch (Exception e){
-                    sResult="Sai KQ";
-                }
-                //Toast.makeText(MainActivity.this,sKQ,Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(MainActivity.this,SecondActivity.class);
-                intent.putExtra("result",sResult);
-                startActivity(intent);
-            }
+        buttonOK.setOnClickListener((view) -> {
+            String sNum1 = editTextNum1.getText().toString();
+            String sNum2 = editTextNum2.getText().toString();
+            Intent intent = new Intent(MainActivity.this,SecondActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putString("Number1",sNum1);
+            bundle.putString("Number2",sNum2);
+            intent.putExtra("DATA",bundle);
+            startActivityForResult(intent,REQUEST_CODE);
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
+        super.onActivityResult(requestCode,requestCode,data);
+        if(requestCode == REQUEST_CODE && resultCode == SecondActivity.RESULT_CODE){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Received Result");
+            String sResult = data.getStringExtra("ResultData");
+            builder.setMessage("The Received Result is: " + sResult);
+            builder.setCancelable(false);
+            builder.setPositiveButton("OK",(dialogInterface, i) -> {
+               dialogInterface.dismiss();
+            });
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+        }
     }
 }
